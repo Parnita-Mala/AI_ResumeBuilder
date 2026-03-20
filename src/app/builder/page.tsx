@@ -178,7 +178,7 @@ export default function BuilderPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/50">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-slate-50 to-blue-100/50">
       <header className="bg-white border-b sticky top-0 z-10">
         <div className="max-w-[1600px] mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
