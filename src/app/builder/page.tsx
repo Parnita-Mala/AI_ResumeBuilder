@@ -22,6 +22,8 @@ interface ResumeData {
   experience: { company: string; role: string; dates: string; description: string }[];
   skills: { name: string; level: string }[];
   projects: { name: string; tech: string; description: string }[];
+  certifications: { name: string; issuer: string; date: string }[];
+  languages: { name: string; level: string }[];
 }
 
 import Auth from '@/components/Auth';
@@ -44,6 +46,8 @@ export default function BuilderPage() {
     experience: [],
     skills: [],
     projects: [],
+    certifications: [],
+    languages: [],
   });
 
   const lastSaveRef = useRef<string>('');
@@ -213,7 +217,9 @@ export default function BuilderPage() {
               {[
                 { id: 'classic', label: 'Classic' },
                 { id: 'modern', label: 'Modern' },
-                { id: 'minimal', label: 'Minimalist' }
+                { id: 'minimal', label: 'Minimal' },
+                { id: 'executive', label: 'Executive' },
+                { id: 'creative', label: 'Creative' }
               ].map((tpl) => (
                 <button
                   key={tpl.id}

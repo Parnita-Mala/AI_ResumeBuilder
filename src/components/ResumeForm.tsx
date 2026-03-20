@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { User, GraduationCap, Briefcase, Award, FolderKanban, Plus, Trash2, Sparkles } from 'lucide-react';
+import { User, GraduationCap, Briefcase, Award, FolderKanban, Plus, Trash2, Sparkles, Medal, Globe } from 'lucide-react';
 
 export default function ResumeForm({ data, onUpdate, onEnhance }: { data: any, onUpdate: (d: any) => void, onEnhance: (type: string, index: number) => void }) {
   const handleChange = (section: string, field: string, value: any, index: number | null = null) => {
@@ -286,6 +286,109 @@ export default function ResumeForm({ data, onUpdate, onEnhance }: { data: any, o
                   onChange={(e) => handleChange('projects', 'description', e.target.value, index)}
                 />
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
+      {/* Certifications */}
+      <section className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div className="flex items-center justify-between mb-6 border-b pb-4">
+          <div className="flex items-center gap-2">
+            <Medal className="w-5 h-5 text-blue-600" />
+            <h2 className="text-xl font-bold text-slate-900">Certifications</h2>
+          </div>
+          <button 
+            onClick={() => addItem('certifications', { name: '', issuer: '', date: '' })}
+            className="flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-700"
+          >
+            <Plus className="w-4 h-4" /> Add Certification
+          </button>
+        </div>
+        <div className="space-y-4">
+          {data.certifications?.map((cert: any, index: number) => (
+            <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 rounded-xl border border-slate-100 bg-slate-50 relative group">
+              <button 
+                onClick={() => removeItem('certifications', index)}
+                className="absolute -top-2 -right-2 p-1 bg-white rounded-full border shadow-sm text-slate-400 hover:text-red-500 transition-all"
+              >
+                <Trash2 className="w-3 h-3" />
+              </button>
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-1">Certification Name</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 rounded-lg border border-slate-200 outline-none"
+                  value={cert.name}
+                  onChange={(e) => handleChange('certifications', 'name', e.target.value, index)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-1">Issuer</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 rounded-lg border border-slate-200 outline-none"
+                  value={cert.issuer}
+                  onChange={(e) => handleChange('certifications', 'issuer', e.target.value, index)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-1">Date</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 rounded-lg border border-slate-200 outline-none"
+                  placeholder="2023"
+                  value={cert.date}
+                  onChange={(e) => handleChange('certifications', 'date', e.target.value, index)}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Languages */}
+      <section className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div className="flex items-center justify-between mb-6 border-b pb-4">
+          <div className="flex items-center gap-2">
+            <Globe className="w-5 h-5 text-blue-600" />
+            <h2 className="text-xl font-bold text-slate-900">Languages</h2>
+          </div>
+          <button 
+            onClick={() => addItem('languages', { name: '', level: 'Fluent' })}
+            className="flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-700"
+          >
+            <Plus className="w-4 h-4" /> Add Language
+          </button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {data.languages?.map((lang: any, index: number) => (
+            <div key={index} className="flex gap-2 p-3 rounded-lg bg-slate-50 border border-slate-100">
+              <div className="flex-1 space-y-2">
+                <input
+                  type="text"
+                  className="w-full px-3 py-1.5 rounded-md border border-slate-200 outline-none text-sm"
+                  placeholder="Language (e.g. English)"
+                  value={lang.name}
+                  onChange={(e) => handleChange('languages', 'name', e.target.value, index)}
+                />
+                <select
+                  className="w-full px-3 py-1.5 rounded-md border border-slate-200 outline-none text-xs font-medium bg-white"
+                  value={lang.level}
+                  onChange={(e) => handleChange('languages', 'level', e.target.value, index)}
+                >
+                  <option>Native</option>
+                  <option>Fluent</option>
+                  <option>Professional</option>
+                  <option>Intermediate</option>
+                  <option>Elementary</option>
+                </select>
+              </div>
+              <button 
+                onClick={() => removeItem('languages', index)}
+                className="p-2 text-slate-400 hover:text-red-500 transition-all self-start"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
             </div>
           ))}
         </div>
